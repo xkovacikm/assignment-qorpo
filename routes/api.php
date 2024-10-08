@@ -1,18 +1,19 @@
 <?php
 
+use App\Http\Controllers\API\v1\CurrencyAPIController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
-Route::group([
-
-    'middleware' => 'api',
-    'prefix' => 'auth'
-
-], function ($router) {
+Route::name("api.v1.")->middleware("api")->prefix("api/v1")->group(function ($router) {
     $controller = AuthController::class;
-    Route::post('login', "$controller@login");
-    Route::post('logout', "$controller@logout");
-    Route::post('refresh', "$controller@refresh");
-    Route::post('me', "$controller@me");
 
+    Route::post('login', "$controller@login");
+
+    Route::middleware('auth:api')->group(function ($router) use($controller)
+    {
+        Route::post('logout', "$controller@logout");
+        Route::post('refresh', "$controller@refresh");
+        Route::post('me', "$controller@me");
+        Route::apiResource('currencies', CurrencyAPIController::class);
+    });
 });
