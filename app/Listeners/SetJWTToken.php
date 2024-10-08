@@ -5,6 +5,7 @@ namespace App\Listeners;
 use App\Events\Login;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Support\Facades\Cookie;
 
 class SetJWTToken
 {
@@ -21,9 +22,8 @@ class SetJWTToken
      */
     public function handle(\Illuminate\Auth\Events\Login $event): void
     {
-
-        $userId = auth("api")->user();
-        dd($userId);
-        $token = auth("api")->tokenById(123);
+        $userId = auth()->id();
+        $token = auth("api")->tokenById($userId);
+        setcookie("access_token", $token, time() + 3600, "/"); // set plain PHP cookie to avoid Laravel encryption
     }
 }
