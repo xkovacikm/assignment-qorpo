@@ -11,5 +11,18 @@ export default defineConfig({
             ],
             refresh: true,
         }),
+        vue({
+            template: {
+                transformAssetUrls: {
+                    base: null,
+                    includeAbsolute: false,
+                },
+                compilerOptions: {
+                    isCustomElement: (tag) => {
+                        return tag.startsWith('app') // (return true)
+                    }
+                }
+            },
+        }),
     ],
 });

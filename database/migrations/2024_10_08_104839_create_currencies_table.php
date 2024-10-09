@@ -15,14 +15,14 @@ return new class extends Migration
             //$table->id();
 
             $table->uuid("id")->primary();
+            $table->string("symbol")->unique();
+            $table->string("coin_id")->unique();
+
             $table->string("name");
-            $table->integer("coin_id")->nullable();
             $table->double("current_price")->default(0);
             $table->double("price_change_percentage_24h")->default(0);
             $table->text("image_url")->nullable();
             $table->double("market_cap")->nullable();
-            $table->string("symbol")->nullable();
-
             $table->timestamps();
         });
     }

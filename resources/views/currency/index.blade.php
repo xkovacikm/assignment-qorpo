@@ -1,5 +1,5 @@
 @extends("layouts.app")
 
 @section("content")
-    test
+    <app-currencies-index></app-currencies-index>
 @endsection

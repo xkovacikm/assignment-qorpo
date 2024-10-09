@@ -3,7 +3,7 @@
 <head>
     @include("layouts.app.head")
 </head>
-<body>
+<body id="app">
     <div class="container">
         @yield('content')
     </div>

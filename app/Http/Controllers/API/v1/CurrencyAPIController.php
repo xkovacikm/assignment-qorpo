@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API\v1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CurrencyIndexCollection;
 use App\Models\Currency;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,9 @@ class CurrencyAPIController extends Controller
      */
     public function index()
     {
-        return response()->json(["a" => "b"]);
+        $models = Currency::paginate(10);
+        return new CurrencyIndexCollection($models);
+        return response()->json(["models" => $models]);
     }
 
     /**
