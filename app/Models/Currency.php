@@ -28,4 +28,9 @@ class Currency extends Model
             "image_url" => $this->image_url,
         ];
     }
+
+    public function getRouteKeyName(): string
+    {
+        return "coin_id";
+    }
 }

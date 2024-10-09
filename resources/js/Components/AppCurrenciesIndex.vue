@@ -1,7 +1,7 @@
 <template>
   <div>
-      <not-authenticated v-if="authorized === false"></not-authenticated>
-      <div v-else-if="authorized === true">
+      <loader v-if="!ready" />
+      <div v-else>
           <div class="table">
               <thead>
                 <tr>
@@ -17,15 +17,15 @@
 </template>
 
 <script>
-import NotAuthenticated from "./NotAuthenticated.vue";
 import CurrencyRow from "./Currencies/CurrencyRow.vue";
+import Loader from "./Loader.vue";
 
 export default {
-  components: {CurrencyRow, NotAuthenticated},
+  components: {Loader, CurrencyRow },
 
   data() {
       return {
-          authorized: null,
+          ready: false,
           currencies: []
       }
   },
@@ -34,9 +34,9 @@ export default {
       fetchCurrencies(){
           axios.get("api/v1/currencies").then(response => {
               this.currencies = response.data.data;
-              this.authorized = true;
+              this.ready = true;
           }).catch(error => {
-              this.authorized = false;
+              console.log(error);
           });
       }
   },

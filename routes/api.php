@@ -8,12 +8,12 @@ Route::name("api.v1.")->middleware("api")->prefix("api/v1")->group(function ($ro
     $controller = AuthController::class;
 
     Route::post('login', "$controller@login");
+    Route::apiResource('currencies', CurrencyAPIController::class);
 
     Route::middleware('auth:api')->group(function ($router) use($controller)
     {
         Route::post('logout', "$controller@logout");
         Route::post('refresh', "$controller@refresh");
         Route::post('me', "$controller@me");
-        Route::apiResource('currencies', CurrencyAPIController::class);
     });
 });
