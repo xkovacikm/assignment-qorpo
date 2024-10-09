@@ -16,7 +16,7 @@ class CurrencyDataProviderServiceProvider extends ServiceProvider
     public function register(): void
     {
         app()->bind(CurrencyDataProviderInterface::class, function(){
-            return new CoinGeckoCurrencyDataProvider( new Client());
+            return new CoinGeckoCurrencyDataProvider( new Client(['verify' => false]));
         });
 
         /*app()->bind(CurrencyDataProviderInterface::class, function(){
