@@ -19,7 +19,7 @@ class WatchdogAPIController extends Controller
             abort(401, "Unauthorized");
         }
 
-        $watchdogs = $user->watchdogs;
+        $watchdogs = $user->watchdogs()->with("currency")->get();
 
         return response()->json($watchdogs);
     }

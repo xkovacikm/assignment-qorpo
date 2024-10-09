@@ -3,6 +3,7 @@ import {createApp} from 'vue/dist/vue.esm-bundler';
 import AppCurrenciesIndex from "./Components/AppCurrenciesIndex.vue";
 import Login from "./Components/Auth/Login.vue";
 import WatchDog from "./Components/Watchdogs/Watchdog.vue";
+import WatchdogIndex from "./Components/Watchdogs/WatchdogIndex.vue";
 
 /*axios.get("api/v1/currencies").then(response => {
     console.log(response.data);
@@ -17,7 +18,8 @@ import WatchDog from "./Components/Watchdogs/Watchdog.vue";
 
 const app = createApp({});
 
-app.component('AppCurrenciesIndex', AppCurrenciesIndex);
-app.component('Login', Login);
+app.component("AppCurrenciesIndex", AppCurrenciesIndex);
+app.component("Login", Login);
 app.component("CreateWatchdog", WatchDog);
-app.mount('#app');
+app.component("WatchdogIndex", WatchdogIndex);
+app.mount("#app");
