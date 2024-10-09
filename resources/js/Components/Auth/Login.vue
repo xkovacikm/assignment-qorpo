@@ -15,8 +15,9 @@
     </div>
     <button class="btn btn-primary mt-3" @click="login">Login</button>
   </div>
-  <div v-else>
-      <h1>You are already authenticated</h1>
+  <div v-else-if="authenticated === true">
+      <h1>Welcome!</h1>
+      <div class="btn btn-danger" @click="logout">Logout</div>
   </div>
 
 </template>
@@ -53,6 +54,13 @@ export default {
               window.location.reload();
           }).catch( error  => {
               this.errors = error.response.data.errors;
+          });
+      },
+
+      logout(){
+          axios.post("/api/v1/auth/logout").then( response => {
+              cookie.remove("access_token");
+              window.location.reload();
           });
       }
   },

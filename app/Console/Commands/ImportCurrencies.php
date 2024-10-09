@@ -20,7 +20,7 @@ class ImportCurrencies extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Import and update currencies from data source.';
 
     protected CurrencyDataProviderInterface $dataProvider;
 
