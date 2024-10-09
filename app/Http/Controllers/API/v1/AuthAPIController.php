@@ -40,7 +40,7 @@ class AuthAPIController extends Controller
      */
     public function me()
     {
-        return response()->json(auth()->user());
+        return response()->json(auth("api")->user());
     }
 
     /**
@@ -50,7 +50,7 @@ class AuthAPIController extends Controller
      */
     public function logout()
     {
-        auth()->logout();
+        auth("api")->logout();
 
         return response()->json(['message' => 'Successfully logged out']);
     }

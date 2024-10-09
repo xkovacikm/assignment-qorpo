@@ -38,10 +38,11 @@ class ImportCurrencies extends Command
         $currencies = $this->dataProvider->get();
         foreach ($currencies as $currency)
         {
-            $model = Currency::firstOrCreate([
-                "symbol" => $currency["symbol"]
-            ], [
+            $model = Currency::updateOrCreate([
                 "coin_id" => $currency["id"],
+
+            ], [
+                "symbol" => $currency["id"],
                 "name" => $currency["name"],
                 "current_price" => $currency["current_price"],
                 "price_change_percentage_24h" => $currency["price_change_percentage_24h"],

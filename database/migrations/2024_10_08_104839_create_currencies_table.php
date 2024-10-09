@@ -15,7 +15,7 @@ return new class extends Migration
             //$table->id();
 
             $table->uuid("id")->primary();
-            $table->string("symbol")->unique();
+            $table->string("symbol");
             $table->string("coin_id")->unique();
 
             $table->string("name");
