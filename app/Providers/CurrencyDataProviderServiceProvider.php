@@ -18,6 +18,10 @@ class CurrencyDataProviderServiceProvider extends ServiceProvider
         app()->bind(CurrencyDataProviderInterface::class, function(){
             return new CoinGeckoCurrencyDataProvider( new Client());
         });
+
+        /*app()->bind(CurrencyDataProviderInterface::class, function(){
+            return new MockCoinGeckoCurrencyDataProvider();
+        });*/ // uncomment this line in order to use the mock data provider
     }
 
     /**
