@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API\v1;
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\ApiLoginRequest;
+use App\Http\Requests\Auth\LoginRequest;
 
-class AuthController extends Controller
+class AuthAPIController extends Controller
 {
     /**
      * Create a new AuthController instance.
@@ -20,12 +22,12 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function login()
+    public function login(LoginRequest $request)
     {
         $credentials = request(['email', 'password']);
         $token = auth("api")->attempt($credentials);
         if (!$token) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return response()->json(['errors' => ["email" => [__("Wrong credentials")]]], 401);
         }
 
         return $this->respondWithToken($token);
@@ -72,7 +74,6 @@ class AuthController extends Controller
      */
     protected function respondWithToken($token)
     {
-
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',

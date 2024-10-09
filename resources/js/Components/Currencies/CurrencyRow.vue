@@ -6,7 +6,6 @@
         {{ model.name }}
       </a>
     </td>
-    <td></td>
   </tr>
 </template>
 <script>

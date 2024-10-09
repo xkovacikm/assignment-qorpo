@@ -16,7 +16,6 @@ class CurrencyAPIController extends Controller
     {
         $models = Currency::paginate(10);
         return new CurrencyIndexCollection($models);
-        return response()->json(["models" => $models]);
     }
 
     /**
@@ -32,7 +31,7 @@ class CurrencyAPIController extends Controller
      */
     public function show(Currency $currency)
     {
-        //
+        return response()->json($currency);
     }
 
     /**
